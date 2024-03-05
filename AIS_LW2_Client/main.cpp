@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     std::string filePath;
     char buffer[256];
     if (argc < 4) {
-        fprintf(stderr,"usage %s hostname port\n", argv[0]);
+        fprintf(stderr,"usage %s hostname port filename\n", argv[0]);
         exit(0);
     }
     portno = atoi(argv[2]);
@@ -83,32 +83,7 @@ int main(int argc, char *argv[])
     }
     packet endPacket(1, 1,"\0");
     sendPacket(endPacket, sockfd);
-    
-    
-    /*strcpy(buffer, filePath.c_str());
-    std::cout << buffer << std::endl;
-    n = write(sockfd,buffer,strlen(buffer));
-    if (n < 0) 
-        error("ERROR writing to socket");
-    memset(buffer, 0,256);*/
 
-    /*
-    std::string line;
-    std::ifstream rStream(filePath);
-    while (std::getline(rStream, line)) {
-        int i = 0;
-        do {
-            std::string substr= line.substr(i*256,(i+1)*256);
-            strcpy(buffer, substr.c_str());
-            i++;
-            std::cout << buffer << std::endl;
-            n = write(sockfd,buffer,strlen(buffer));
-            if (n < 0) 
-                error("ERROR writing to socket");
-        }while (i*255 < line.length());
-    }
-    */
-    
     
     std::cout << "file was uploaded" << std::endl;
     close(sockfd);
